@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 if __name__ == "__main__":
-    path = 'Advertising.csv'
+    path = 'data/Advertising.csv'
 
     data = pd.read_csv(path)
     # print data
