@@ -21,12 +21,12 @@ if __name__ == '__main__':
 
     # model training
     x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, random_state=1)
-    model = Ridge()
-    # model=Lasso()
+    model = Ridge()#L2正则
+    # model=Lasso()#L1正则
     alpha_can = np.logspace(-3, 2, 10)
     np.set_printoptions(suppress=True)
     print 'alpha_can = ', alpha_can
-    lasso_model = GridSearchCV(model, param_grid={'alpha': alpha_can}, cv=5)
+    lasso_model = GridSearchCV(model, param_grid={'alpha': alpha_can}, cv=5)#超参数自动选择
     lasso_model.fit(x_train, y_train)
     print '超参数：\n', lasso_model.best_params_  # 描述了已取得最佳结果的参数的组合
 
