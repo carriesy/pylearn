@@ -52,7 +52,7 @@ if __name__ == '__main__':
                                               'importance': clf.feature_importances_})
     importances_fearture.sort_values(by='importance', axis=0, ascending=False, inplace=True)
     importances_fearture['importance_cum'] = importances_fearture['importance'].cumsum()
-    print u'特征重要度\n',importances_fearture
+    print u'特征重要度\n', importances_fearture
     select_fearture = importances_fearture.loc[importances_fearture['importance_cum'] < 0.95, 'fearture']
 
     # 重新组织数据
@@ -62,6 +62,7 @@ if __name__ == '__main__':
     # 训练模型
     clf.fit(x_train, y_train)
     y_hat = clf.predict(x_train)
+    # 评价模型
     print u'oob', clf.oob_score_
     print u'训练及准确率', accuracy_score(y_train, y_hat)
     print u'训练集召回率', recall_score(y_train, y_hat)
