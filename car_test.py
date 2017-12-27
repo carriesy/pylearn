@@ -30,4 +30,13 @@ if __name__ == '__main__':
     print u'输出x前五行', x.head()
     print x.columns
 
-    y = np.array(pd.Categorical(data['accept']).codes)
+    y = np.array(pd.Categorical(data['accep t']).codes)
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.7)
+    clf = LogisticRegressionCV(Cs=np.logspace(-3, 4, 8), cv=5)
+    clf.fit(x, y)
+    print clf.C_
+    y_hat = clf.predict(x_train)
+    print u'训练集精度', metrics.accuracy_score(y_train, y_hat)
+    y_test_hat = clf.predict(x_test)
+    print u'测试集精度', metrics.accuracy_score(y_test, y_test_hat)
